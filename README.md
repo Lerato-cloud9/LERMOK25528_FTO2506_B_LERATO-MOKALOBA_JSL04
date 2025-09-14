@@ -48,3 +48,32 @@ The project includes:
 ## License
 
 This solution code is provided for **educational use only**.
+
+📋 1. Project Title + Short Description
+Task Board App – Its about task management app with To-Do, Doing, and Done columns, built using HTML, CSS, and JavaScript.
+
+🚀 2. Features
+
+➕ Add new tasks using a modal form
+
+ Organize tasks into To-Do, Doing, Done columns
+
+ Displays completed tasks in the console
+
+ Organize tasks into columns (To-Do, Doing, Done)
+
+🛠️ 3. Technologies Used
+
+  🎨HTML – for structure of new task button and modal 
+
+  🎭CSS – for styling and responsive design
+
+  ⚡JavaScript – for interactivity and DOM manipulation
+
+  🎯 The Project purpose
+
+Practice JavaScript DOM manipulation
+
+Learn how to use a modal form for input
+
+Improve my HTML and CSS layout skills
