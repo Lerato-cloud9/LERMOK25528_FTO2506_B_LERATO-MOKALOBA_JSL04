@@ -20,50 +20,77 @@ const initialTasks = [
   },
 ];
 
-// Keep adding tasks until there are 6 in total
-while (initialTasks.length < 6) {
-  addTask();
+// Modal elements
+const modal = document.getElementById("task-modal");
+const closeModalBtn = document.getElementById("close-modal");
+const saveTaskBtn = document.getElementById("save-task-btn");
+
+// Open modal function
+function openModal() {
+  modal.classList.remove("hidden");
 }
 
-// Alert user when task board is full
-if (initialTasks.length === 6) {
-  alert(
-    "There are enough tasks on your board, please check them in the console."
-  );
+// Close modal when clicking X
+closeModalBtn.addEventListener("click", () => {
+  modal.classList.add("hidden");
+});
+
+// Close modal when clicking outside content
+window.addEventListener("click", (e) => {
+  if (e.target === modal) modal.classList.add("hidden");
+});
+
+// Render tasks into columns
+function renderTasks() {
+  const todoCol = document.getElementById("todo-column");
+  const doingCol = document.getElementById("doing-column");
+  const doneCol = document.getElementById("done-column");
+
+  // Clear columns
+  todoCol.innerHTML = "<h3>Todo</h3>";
+  doingCol.innerHTML = "<h3>Doing</h3>";
+  doneCol.innerHTML = "<h3>Done</h3>";
+
+  // Add tasks
+  initialTasks.forEach(task => {
+    const taskDiv = document.createElement("div");
+    taskDiv.className = "task";
+    taskDiv.innerHTML = `<strong>${task.title}</strong><p>${task.description}</p>`;
+
+    if (task.status === "todo") todoCol.appendChild(taskDiv);
+    else if (task.status === "doing") doingCol.appendChild(taskDiv);
+    else doneCol.appendChild(taskDiv);
+  });
 }
 
-// Adds a new task by asking the user for input.
-// Only allows 'todo', 'doing', or 'done' as status values.
-function addTask() {
-  const taskTitle = prompt("Enter task title:");
-  const taskDescription = prompt("Enter task description:");
-  let taskStatus = prompt(
-    "Enter task status (todo, doing, done):"
-  ).toLowerCase();
+// Save task from modal
+saveTaskBtn.addEventListener("click", () => {
+  const title = document.getElementById("task-title").value.trim();
+  const desc = document.getElementById("task-desc").value.trim();
+  const status = document.getElementById("task-status").value;
 
-  while (
-    taskStatus !== "todo" &&
-    taskStatus !== "doing" &&
-    taskStatus !== "done"
-  ) {
-    alert("Invalid status. Please enter 'todo', 'doing', or 'done'.");
-    taskStatus = prompt("Enter task status (todo, doing, done):").toLowerCase();
+  if (!title || !desc) {
+    alert("Please fill out all fields.");
+    return;
   }
 
-  const newTask = {
-    id: initialTasks.length + 1, // Auto-increment ID based on task count
-    title: taskTitle,
-    description: taskDescription,
-    status: taskStatus,
-  };
+  if (initialTasks.length >= 6) {
+    alert("Task board is full. Cannot add more tasks.");
+    modal.classList.add("hidden");
+    return;
+  }
 
-  initialTasks.push(newTask); // Add the task to the array
-}
+  const newTask = { id: initialTasks.length + 1, title, description: desc, status };
+  initialTasks.push(newTask);
 
-// Keep adding tasks until there are 6 in total
-const getCompletedTasks = () =>
-  initialTasks.filter((task) => task.status === "done");
+  // Reset modal
+  document.getElementById("task-title").value = "";
+  document.getElementById("task-desc").value = "";
+  document.getElementById("task-status").value = "todo";
 
-// Display tasks in the console
-console.log("All tasks: ", initialTasks);
-console.log("Completed tasks: ", getCompletedTasks());
+  modal.classList.add("hidden");
+  renderTasks();
+});
+
+// Initial render
+renderTasks();

@@ -332,3 +332,69 @@ h2 {
     padding: 24px;
   }
 }
+
+/* ========================
+   Modal Styles
+======================== */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5); /* Semi-transparent overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000; /* Make sure it's above other elements */
+}
+
+.modal-content {
+  background-color: var(--primary-color);
+  padding: 20px;
+  border-radius: 12px;
+  width: 500px;
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: var(--primary-box-shadow);
+}
+
+#close-modal {
+  align-self: flex-end;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.modal input,
+.modal textarea,
+.modal select,
+.modal button {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.875rem;
+  font-family: inherit;
+  box-sizing: border-box;
+}
+
+.modal button {
+  background-color: #4f46e5;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.modal button:hover {
+  background-color: #4338ca;
+}
+
+/* Hide modal by default */
+.hidden {
+  display: none;
+}
