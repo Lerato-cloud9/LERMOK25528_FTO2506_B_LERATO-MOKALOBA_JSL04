@@ -49,6 +49,8 @@ The project includes:
 
 This solution code is provided for **educational use only**.
 
+PROJECT BRIEF
+
 📋 1. Project Title + Short Description
 Task Board App – Its about task management app with To-Do, Doing, and Done columns, built using HTML, CSS, and JavaScript.
 
